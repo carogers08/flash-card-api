@@ -1,0 +1,16 @@
+version: '3.4'
+
+services:
+  flash-card-api:
+    image: ${DOCKER_REGISTRY-}flashcardapi
+    build:
+      context: .
+      dockerfile: flash-card-api/Dockerfile
+
+  db:
+    image: mcr.microsoft.com/mssql/server:2022-CU12-GDR1-ubuntu-22.04
+    environment:
+      - SA_PASSWORD=Password!
+      - ACCEPT_EULA=Y
+    ports:
+      - "5434:1433"

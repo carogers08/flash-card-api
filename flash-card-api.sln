@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34728.123
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "flash-card-api", "flash-card-api\flash-card-api.csproj", "{54CDA227-FCBF-4E21-A9B9-8783810D1FDB}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{88D3FB14-E3CD-458C-A7C6-9C5DF22647EF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "db", "db", "{3DE1DE05-3F51-48E1-86F7-00684DDE9D5F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{54CDA227-FCBF-4E21-A9B9-8783810D1FDB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54CDA227-FCBF-4E21-A9B9-8783810D1FDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54CDA227-FCBF-4E21-A9B9-8783810D1FDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54CDA227-FCBF-4E21-A9B9-8783810D1FDB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{88D3FB14-E3CD-458C-A7C6-9C5DF22647EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88D3FB14-E3CD-458C-A7C6-9C5DF22647EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88D3FB14-E3CD-458C-A7C6-9C5DF22647EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88D3FB14-E3CD-458C-A7C6-9C5DF22647EF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {21C8C67F-E4EE-4838-AA2C-E8E758383B5B}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,10 @@
+/.vs/*
+/!docs/*
+
+# Build results
+obj/
+bin/
+
+# User-specific files
+*.sou
+*.user
