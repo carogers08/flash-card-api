@@ -8,3 +8,5 @@ bin/
 # User-specific files
 *.sou
 *.user
+
+logs/

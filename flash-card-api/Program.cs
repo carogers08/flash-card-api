@@ -1,8 +1,41 @@
+using flash_card_api.Data;
+using NLog;
+using NLog.Web;
+
+var config = new ConfigurationBuilder()
+    .AddJsonFile("appsettings.json", optional: false)
+    .Build();
+
+var logger = NLog.LogManager.Setup().LoadConfigurationFromAppSettings().GetCurrentClassLogger();
+logger.Debug("init main");
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+//NLog: Setup NLog for injection dependency
+builder.Logging.ClearProviders();
+builder.Logging.SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Trace);
+builder.Host.UseNLog();
 
+// Add services to the container.
+builder.Services.AddScoped<DatabaseService>();
 var app = builder.Build();
+
+// Wait for DB connection then run migrations
+while (true)
+{
+    string error;
+    if (DatabaseService.IsServerConnected(config.GetConnectionString("master_db"), out error))
+    {
+        logger.Info("Server Connected");
+        DatabaseService.RunMigrations(config.GetConnectionString("master_db"), config.GetConnectionString("flash_card_db"));
+        break;
+    }
+    else
+    {
+        Thread.Sleep(50);
+        logger.Error(error);
+    }
+}
 
 // Configure the HTTP request pipeline.
 
