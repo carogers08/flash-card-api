@@ -140,5 +140,18 @@ namespace flash_card_api.Data
                 }
             }
         }
+
+        /*** Helper Methods ***/
+        public void LogError(string sql, string error)
+        {
+            if (!string.IsNullOrWhiteSpace(sql))
+                _logger.LogWarning("Error running query: " + sql);
+            _logger.LogError(error);
+        }
+
+        public void LogDebug(string debug)
+        {
+            _logger.LogWarning(debug);
+        }
     }
 }
