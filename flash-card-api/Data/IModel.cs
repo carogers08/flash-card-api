@@ -3,9 +3,9 @@
     public interface IModel<T, I>
     {
         public T Load();
-        public T GetById();
-        public bool Insert();
-        public bool Update();
-        public bool Delete();
+        public string GetById();
+        public string Insert();
+        public string Update();
+        public string Delete();
     }
 }
