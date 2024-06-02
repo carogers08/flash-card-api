@@ -115,7 +115,7 @@ namespace flash_card_api.Data
             return response;
         }
 
-        public T ReadMany<T>(string sql) where T : new()
+        public List<T> ReadMany<T>(string sql) where T : new()
         {
             List<T> list = new List<T>();
 
