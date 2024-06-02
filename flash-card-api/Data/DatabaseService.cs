@@ -1,7 +1,9 @@
 ﻿using Microsoft.Data.SqlClient;
 using flash_card_api.Libs;
 using System.Data;
-using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Reflection;
 
 namespace flash_card_api.Data
 {
@@ -93,6 +95,46 @@ namespace flash_card_api.Data
             return success;
         }
 
+        public T ReadOne<T>(string sql) where T: new()
+        {
+            T response = new();
+
+            try
+            {
+                DataTable dt = ExecuteQuery(sql);
+                if (dt != null && dt.Rows.Count > 0)
+                {
+                    response = Load<T>(dt.Rows[0]);
+                }
+            }
+            catch (Exception ex)
+            {
+                LogError(sql, ex.Message);
+            }
+
+            return response;
+        }
+
+        public T ReadMany<T>(string sql) where T : new()
+        {
+            List<T> list = new List<T>();
+
+            try
+            {
+                DataTable dt = ExecuteQuery(sql);
+                foreach (DataRow row in dt.Rows)
+                    list.Add(Load<T>(row));
+            }
+            catch (Exception ex)
+            {
+                LogError(sql, ex.Message);
+            }
+
+            return list;
+        }
+
+
+        /*** Static Methods ***/
         public static bool IsServerConnected(string connectionString, out string error)
         {
             error = "";
@@ -139,6 +181,24 @@ namespace flash_card_api.Data
                     command.ExecuteNonQuery();
                 }
             }
+        }
+
+        public static T Load<T>(DataRow row) where T: new()
+        {
+            T response = new T();
+            var properties = response.GetPropertyNames();
+
+            foreach (DataColumn c in row.Table.Columns)
+            {
+                string propName = properties[c.ColumnName];
+                PropertyInfo pi = response.GetType().GetProperty(propName);
+                if (pi != null)
+                {
+                    pi.SetValue(response, row[c], null);
+                }
+            }
+
+            return response;
         }
 
         /*** Helper Methods ***/

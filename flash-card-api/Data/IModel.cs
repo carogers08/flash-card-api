@@ -1,11 +1,12 @@
-﻿namespace flash_card_api.Data
+﻿using System.Data;
+
+namespace flash_card_api.Data
 {
-    public interface IModel<T, I>
+    public interface IModel
     {
-        public T Load();
-        public string GetById();
-        public string Insert();
-        public string Update();
-        public string Delete();
+        public string GetById(int id);
+        public string Insert(IModel obj);
+        public string Update(IModel obj);
+        public string Delete(int id);
     }
 }
