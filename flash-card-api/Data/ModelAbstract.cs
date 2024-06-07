@@ -8,7 +8,6 @@ namespace flash_card_api.Data
 {
     public abstract class ModelAbstract : IModel
     {
-        protected abstract DatabaseService _dbio { get; }
         protected abstract string _selectSql { get; }
         protected abstract string _insertSql { get; }
         protected abstract string _updateSql { get; }
@@ -24,7 +23,7 @@ namespace flash_card_api.Data
             return _deleteSql + "WHERE [Id] = " + id;
         }
 
-        public string Insert(ModelAbstract obj)
+        public string Insert(object obj)
         {
             string sql = _insertSql;
             var properties = obj.GetPropertyNames();
@@ -38,7 +37,7 @@ namespace flash_card_api.Data
             return sql;
         }
 
-        public string Update(ModelAbstract obj)
+        public string Update(object obj)
         {
             string sql = _updateSql;
             var properties = obj.GetPropertyNames();

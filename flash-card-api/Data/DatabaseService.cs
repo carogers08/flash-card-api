@@ -190,7 +190,7 @@ namespace flash_card_api.Data
 
             foreach (DataColumn c in row.Table.Columns)
             {
-                string propName = properties[c.ColumnName];
+                string propName = properties[c.ColumnName].ToLower();
                 PropertyInfo pi = response.GetType().GetProperty(propName);
                 if (pi != null)
                 {
